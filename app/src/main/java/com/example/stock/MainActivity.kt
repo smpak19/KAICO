@@ -18,17 +18,20 @@ import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.common.model.AuthErrorCause.* //when문에 있는 AccessDenied와 같은 상수들을 사용하기 위함
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import com.example.stock.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = binding.viewPager
@@ -44,5 +47,17 @@ class MainActivity : AppCompatActivity() {
         val keyHash = Utility.getKeyHash(this)  //해쉬 키 값을 받기 위함
         Log.d("Hash", keyHash)
 
+        binding.viewpager.apply {
+            adapter = MyPagerAdapter(context as FragmentActivity)
+        }
+
+        TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
+            tab.text = "Title $position"
+            when (position) {
+                0 -> tab.setIcon(R.drawable.ic_launcher_background)
+                1 -> tab.setIcon(R.drawable.ic_launcher_background)
+                2 -> tab.setIcon(R.drawable.ic_launcher_background)
+            }
+        }.attach()
     }
 }
