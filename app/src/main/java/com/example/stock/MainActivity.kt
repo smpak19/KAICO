@@ -1,10 +1,13 @@
 package com.example.stock
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.example.stock.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import io.socket.client.Socket
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -27,4 +30,11 @@ class MainActivity : AppCompatActivity() {
             }
         }.attach()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
 }
+
