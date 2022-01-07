@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity(){
 
         val handler: Handler = Handler()
         handler.postDelayed({
-            val intent = Intent(this, MainActivity::class.java) //다음페이지
+            val intent = Intent(this, LoginActivity::class.java) //다음페이지
             startActivity(intent)
             finish()
         },3000) //3초간 지연
