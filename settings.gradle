@@ -4,7 +4,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven {url 'https://devrepo.kakao.com/nexus/content/groups/public/'}  //카카오 로그인을 위한 추가
     }
 }
 rootProject.name = "Stock"
 include ':app'
+
+
+
+
