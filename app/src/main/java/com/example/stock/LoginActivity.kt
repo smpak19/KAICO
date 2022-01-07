@@ -18,6 +18,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.kakao_login)
         //로그인 버튼 코드
+
+        val keyHash = Utility.getKeyHash(this)
+        Log.e("해시키", keyHash)
+
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 when {
