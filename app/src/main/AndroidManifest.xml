@@ -40,6 +40,10 @@
             android:theme="@style/Theme.Stock.NoActionBar">
         </activity>
 
+        <activity android:name=".SigninActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Stock.NoActionBar"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

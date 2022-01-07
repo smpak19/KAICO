@@ -1,0 +1,66 @@
+package com.example.stock
+
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.stock.databinding.ActivitySigninBinding
+import com.google.gson.Gson
+import io.socket.client.Socket
+import io.socket.client.IO
+import io.socket.emitter.Emitter
+import java.net.URISyntaxException
+
+public class PersonInfo(var id: String, var pwd: String)
+
+class SigninActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivitySigninBinding
+    private lateinit var id : String
+    private lateinit var pwd : String
+    lateinit var mSocket : Socket
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivitySigninBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.okbutton.setOnClickListener {
+            id = binding.newid.text.toString()
+            pwd = binding.newpwd.text.toString()
+
+            if(id.equals("") || pwd.equals("")) {
+                Toast.makeText(applicationContext, "텍스트를 입력해 주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                signin()
+            }
+        }
+    }
+
+    private fun signin(): Unit {
+        try {
+            mSocket = IO.socket("http://172.20.10.2:3000")
+            Log.d("SOCKET", "Connection success : " + mSocket.id())
+        } catch (e: URISyntaxException) {
+            e.printStackTrace()
+        }
+
+        mSocket.connect()
+        mSocket.on(Socket.EVENT_CONNECT, onConnect)
+
+    }
+
+    val onConnect : Emitter.Listener = Emitter.Listener {
+        val gson = Gson()
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+        }, 0)
+        mSocket.emit("signin", gson.toJson(PersonInfo(id,pwd)))
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+}
