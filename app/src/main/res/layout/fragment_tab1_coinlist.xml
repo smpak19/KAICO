@@ -56,6 +56,18 @@
                 android:checked="false"
                 android:button="@drawable/coin_list_button_border"
                 android:text="관심코인"/>
+
+            <RadioButton
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:backgroundTint="@color/white"
+                android:text="시세 조회"
+                android:textColor="@color/black"
+                android:checked="false"
+                android:textSize="14sp"
+                android:button="@drawable/coin_list_button_border"
+                android:gravity="center"/>
         </RadioGroup>
     </LinearLayout>
     <LinearLayout
@@ -102,6 +114,8 @@
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </LinearLayout>

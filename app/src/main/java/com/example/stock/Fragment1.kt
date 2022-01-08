@@ -19,9 +19,6 @@ import java.text.DecimalFormat
 
 class Fragment1 : Fragment() {
 
-    // 거래량 상위 10위 코인
-    private val top10 : Array<String> = arrayOf("BTC", "LINK", "ETH", "XRP", "SAND", "DOGE", "BORA", "BTT", "ADA", "EOS")
-
     private var _binding: FragmentCoinlistBinding? = null
     private val binding get() = _binding!!
 
