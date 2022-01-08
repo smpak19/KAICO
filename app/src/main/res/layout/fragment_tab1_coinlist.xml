@@ -35,16 +35,17 @@
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <RadioButton
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center"
                 android:id="@+id/krwBtn"
-                android:layout_width="80dp"
+                android:layout_width="85dp"
                 android:layout_height="30dp"
-                android:checked="true"
                 android:button="@drawable/coin_list_button_border"
-                android:text="KRW"/>
+                android:checked="true"
+                android:gravity="center"
+                android:text="KRW"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
             <RadioButton
                 android:textSize="14sp"
                 android:textColor="@color/black"
