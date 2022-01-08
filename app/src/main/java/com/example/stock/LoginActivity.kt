@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.stock.databinding.KakaoLoginBinding
@@ -20,13 +17,13 @@ import io.socket.client.Socket
 import io.socket.client.IO
 import io.socket.emitter.Emitter
 import java.net.URISyntaxException
+import com.example.stock.GlobalApplication.Companion.mSocket
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: KakaoLoginBinding
     private lateinit var id : String
     private lateinit var pwd : String
-    lateinit var mSocket : Socket
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,14 +98,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(): Unit {
-        try {
-            mSocket = IO.socket("http://172.20.10.2:3000")
-            Log.d("SOCKET", "Connection success : " + mSocket.id())
-        } catch (e: URISyntaxException) {
-            e.printStackTrace()
-        }
 
         mSocket.connect()
+        Log.d("SOCKET", "Connection success : " + mSocket.id())
 
         mSocket.on(Socket.EVENT_CONNECT, onConnect)
         mSocket.on("login_true", onTrue)
@@ -134,6 +126,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "아이디/비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
         }, 0)
         mSocket.disconnect()
+        mSocket = IO.socket("http://192.249.18.155:80") // Login fail, disconnect socket and reinitialize socket
     }
 
     override fun onBackPressed() {

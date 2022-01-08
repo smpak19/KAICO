@@ -13,6 +13,7 @@ import io.socket.client.Socket
 import io.socket.client.IO
 import io.socket.emitter.Emitter
 import java.net.URISyntaxException
+import com.example.stock.GlobalApplication.Companion.mSocket
 
 public class PersonInfo(var id: String, var pwd: String)
 
@@ -21,7 +22,6 @@ class SigninActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySigninBinding
     private lateinit var id : String
     private lateinit var pwd : String
-    lateinit var mSocket : Socket
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,14 +42,9 @@ class SigninActivity : AppCompatActivity() {
     }
 
     private fun signin(): Unit {
-        try {
-            mSocket = IO.socket("http://172.20.10.2:3000")
-            Log.d("SOCKET", "Connection success : " + mSocket.id())
-        } catch (e: URISyntaxException) {
-            e.printStackTrace()
-        }
 
         mSocket.connect()
+        Log.d("SOCKET", "Connection success : " + mSocket.id())
         mSocket.on(Socket.EVENT_CONNECT, onConnect)
 
     }
