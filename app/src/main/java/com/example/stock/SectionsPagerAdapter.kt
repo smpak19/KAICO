@@ -11,7 +11,7 @@ class MyPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> { Fragment1() }
+            0 -> { Fragment11() }
             1 -> { Fragment2() }
             else -> { Fragment3() }
         }
