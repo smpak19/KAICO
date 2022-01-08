@@ -9,6 +9,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    private val tabIcon = listOf( //탭의 아이콘 리스트
+        R.drawable.ic_launcher_background,
+        R.drawable.ic_launcher_background,
+        R.drawable.ic_launcher_background
+    )
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -18,13 +25,12 @@ class MainActivity : AppCompatActivity() {
             adapter = MyPagerAdapter(context as FragmentActivity)
         }
 
+        //TabLayout과 ViewPager2연결
         TabLayoutMediator(binding.tabs, binding.viewpager) { tab, position ->
-            tab.text = "Title $position"
-            when (position) {
-                0 -> tab.setIcon(R.drawable.ic_launcher_background)
-                1 -> tab.setIcon(R.drawable.ic_launcher_background)
-                2 -> tab.setIcon(R.drawable.ic_launcher_background)
-            }
+            if(position==0) tab.text = "코인목록"
+            if(position==1) tab.text = "투자내역"
+            if(position==2) tab.text = "랭킹"
+            tab.setIcon(tabIcon[position])  //탭 아이콘은 위에 만들었던 리스트에서 가져와서 포지션에 따라 다르게 나옴
         }.attach()
     }
 }
