@@ -8,9 +8,13 @@ import androidx.fragment.app.FragmentActivity
 import com.example.stock.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import io.socket.client.Socket
+import com.example.stock.GlobalApplication.Companion.mSocket
+import com.google.android.material.snackbar.Snackbar
+import io.socket.client.IO
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var mBackWait: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +36,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+
+        if(System.currentTimeMillis() - mBackWait >= 2000) {
+            mBackWait = System.currentTimeMillis()
+            Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 로그아웃됩니다", Toast.LENGTH_SHORT).show()
+        } else {
+            super.onBackPressed()
+            mSocket.disconnect()
+            mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
 
