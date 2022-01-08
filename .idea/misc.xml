@@ -6,8 +6,16 @@
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_main.xml" value="0.11347517730496454" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/content_coin.xml" value="0.20520833333333333" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_blank.xml" value="0.21927083333333333" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_main.xml" value="0.11347517730496454" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab1.xml" value="0.165" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab2.xml" value="0.25" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab2_buy.xml" value="0.271875" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab2_coininfo.xml" value="0.271875" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab2_coinlist.xml" value="0.271875" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/kakao_login.xml" value="0.25" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/test.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.34556159420289856" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.3858695652173913" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.23020833333333332" />
