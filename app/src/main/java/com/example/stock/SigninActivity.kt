@@ -46,16 +46,29 @@ class SigninActivity : AppCompatActivity() {
         mSocket.connect()
         Log.d("SOCKET", "Connection success : " + mSocket.id())
         mSocket.on(Socket.EVENT_CONNECT, onConnect)
+        mSocket.on("sign_in_success", onSuc)
+        mSocket.on("duplicate_id", onDup)
 
     }
 
     val onConnect : Emitter.Listener = Emitter.Listener {
         val gson = Gson()
+        mSocket.emit("signin", gson.toJson(PersonInfo(id,pwd)))
+    }
+
+    val onSuc : Emitter.Listener = Emitter.Listener {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
         }, 0)
-        mSocket.emit("signin", gson.toJson(PersonInfo(id,pwd)))
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    val onDup : Emitter.Listener = Emitter.Listener {
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(this, "아이디가 중복됩니다.", Toast.LENGTH_SHORT).show()
+        }, 0)
+        mSocket.disconnect()
+        mSocket = IO.socket("http://192.249.18.155:80")
     }
 }
