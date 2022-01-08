@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/coin_list_button_border.xml" value="0.28802083333333334" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/coin_list_button_border_checked.xml" value="0.28802083333333334" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/coin_list_button_border_not_checked.xml" value="0.28802083333333334" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/coin_list_button_checked.xml" value="0.28802083333333334" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_main.xml" value="0.11347517730496454" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_splash.xml" value="0.25" />

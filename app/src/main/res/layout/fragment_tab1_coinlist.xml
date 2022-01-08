@@ -18,9 +18,7 @@
         android:layout_marginRight="10dp"
         android:text="코인 목록"/>
     <androidx.appcompat.widget.SearchView
-        android:theme="@style/SearchViewStyle"
         android:id="@+id/searchView"
-        android:background="@drawable/coin_list_searchview_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
