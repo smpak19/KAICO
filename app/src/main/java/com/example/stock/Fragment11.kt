@@ -97,6 +97,8 @@ class Fragment11: Fragment() {
                     rate = "+$rate%"
                 } else if(sign == "FALL") {
                     rate = "-$rate%"
+                } else {
+                    rate = "$rate%"
                 }
                 val amount = jsonObject.get("signed_change_price").toString()
                 val total = toDoubleFormat(jsonObject.getDouble("acc_trade_price_24h")/1000000) + "백만"

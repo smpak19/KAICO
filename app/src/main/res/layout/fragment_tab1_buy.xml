@@ -162,8 +162,8 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="#8E8B8B"
-            android:text="초기화"
+            android:backgroundTint="#354EDA"
+            android:text="매도"
             android:textColor="#ffffff"
             android:textSize="14sp" />
 
