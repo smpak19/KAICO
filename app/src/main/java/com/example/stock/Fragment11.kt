@@ -1,9 +1,13 @@
 package com.example.stock
 
+import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.*
-import android.widget.SearchView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +18,12 @@ import com.android.volley.toolbox.Volley
 import com.example.stock.databinding.FragmentTab1CoinlistBinding
 import org.json.JSONArray
 import org.json.JSONException
+import com.example.stock.GlobalApplication.Companion.mSocket
+import com.example.stock.GlobalApplication.Companion.user_id
+import io.socket.emitter.Emitter
+import kotlin.math.ceil
 import org.json.JSONObject
+import org.w3c.dom.Text
 import java.text.DecimalFormat
 
 
@@ -26,7 +35,6 @@ class Fragment11: Fragment() {
 
     private var _binding: FragmentTab1CoinlistBinding? = null
     private val binding get() = _binding!!
-
     lateinit var tab1adapter: Tab1adapter
     private val datas = mutableListOf<CoinInfo>()
 
@@ -66,6 +74,55 @@ class Fragment11: Fragment() {
                 return true
             }
 
+        })
+
+        tab1adapter.setItemClickListener(object : Tab1adapter.OnItemClickListener {
+            override fun onClick(v: View, position: Int) {
+
+                val price = datas[position].price.replace(",", "")
+
+                val mDialogView = LayoutInflater.from(context).inflate(R.layout.fragment_tab1_buy, null)
+
+                val amount : EditText = mDialogView.findViewById(R.id.orderCount)
+                val orderPrice : TextView = mDialogView.findViewById(R.id.orderPrice)
+                val canOrderPrice : TextView = mDialogView.findViewById(R.id.canOrderPrice)
+                val orderTotal : TextView = mDialogView.findViewById(R.id.orderTotalPrice)
+                val maedo : Button = mDialogView.findViewById(R.id.resetBtn)
+                val maesu : Button = mDialogView.findViewById(R.id.buyBtn)
+
+                maedo.setOnClickListener { Toast.makeText(context, "maedo", Toast.LENGTH_SHORT).show() }
+                maesu.setOnClickListener { Toast.makeText(context, "maesu", Toast.LENGTH_SHORT).show() }
+
+                amount.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        if(p0 == null || p0.isEmpty() ) {
+                            orderTotal.text = "0 KRW"
+                        } else {
+                            val s1 = toDoubleFormat(((price).toDouble())*(p0.toString().toDouble())) + " KRW"
+                            orderTotal.text = s1
+                        }
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+
+                    }
+
+                })
+
+                mSocket.emit("get_account", user_id)
+                mSocket.on("give_account", Emitter.Listener {
+                    val account = toDoubleFormat(JSONArray(it).getDouble(0)) + " KRW"
+                    canOrderPrice.text = account
+                })
+
+                orderPrice.text = datas[position].price
+                val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle(datas[position].name)
+                mBuilder.show()
+            }
         })
 
         return binding.root
@@ -144,5 +201,4 @@ class Fragment11: Fragment() {
         }
         return df.format(num)
     }
-
 }

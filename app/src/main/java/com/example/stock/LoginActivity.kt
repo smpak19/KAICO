@@ -19,6 +19,7 @@ import io.socket.client.IO
 import io.socket.emitter.Emitter
 import java.net.URISyntaxException
 import com.example.stock.GlobalApplication.Companion.mSocket
+import com.example.stock.GlobalApplication.Companion.user_id
 import com.kakao.sdk.user.UserApiClient
 
 
@@ -151,6 +152,7 @@ class LoginActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
         }, 0)
+        user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
@@ -159,6 +161,7 @@ class LoginActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "환영합니다", Toast.LENGTH_SHORT).show()
         }, 0)
+        user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
@@ -178,6 +181,7 @@ class LoginActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "환영합니다", Toast.LENGTH_SHORT).show()
         }, 0)
+        user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
@@ -187,6 +191,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "아이디/비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
         }, 0)
         mSocket.disconnect()
+        user_id = null
         mSocket = IO.socket("http://192.249.18.155:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
     }
 
