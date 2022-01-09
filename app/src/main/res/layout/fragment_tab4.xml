@@ -17,11 +17,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
+        android:background="#A4A4A4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="40dp"
+        android:padding="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -37,7 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="1.0"
-        app:optRoundCardBackgroundColor="#1E406E"
         app:optRoundCardCornerRadius="50dp"
         app:optRoundCardElevation="0dp"
         app:optRoundCardLeftBottomCorner="false"
@@ -46,6 +46,7 @@
         app:optRoundCardRightTopCorner="true">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="80dp"
@@ -57,7 +58,7 @@
                 android:text="유저명@+id/username"
                 android:textAlignment="center"
                 android:textColor="#9394B8"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Button
@@ -66,7 +67,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="30dp"
-                android:background="#07518A"
+                android:background="@android:drawable/editbox_background"
+                android:backgroundTint="@color/Stock_blue"
                 android:text="PERSONAL INFO"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
@@ -87,6 +89,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="30dp"
                 android:background="@android:drawable/editbox_background"
+                android:backgroundTint="@color/Stock_blue"
                 android:text="CHANGE PW"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
@@ -107,6 +110,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="30dp"
                 android:background="@android:drawable/editbox_background"
+                android:backgroundTint="@color/Stock_blue"
                 android:text="LOGOUT"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
@@ -121,6 +125,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="30dp"
                 android:background="@android:drawable/editbox_background"
+                android:backgroundTint="@color/Stock_blue"
                 android:elevation="0dp"
                 android:text="APP RESET"
                 android:textAllCaps="false"
