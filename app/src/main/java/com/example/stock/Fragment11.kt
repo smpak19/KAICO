@@ -1,9 +1,14 @@
 package com.example.stock
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.EditText
 import android.widget.SearchView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +20,7 @@ import com.example.stock.databinding.FragmentTab1CoinlistBinding
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import org.w3c.dom.Text
 import java.text.DecimalFormat
 
 
@@ -26,7 +32,6 @@ class Fragment11: Fragment() {
 
     private var _binding: FragmentTab1CoinlistBinding? = null
     private val binding get() = _binding!!
-
     lateinit var tab1adapter: Tab1adapter
     private val datas = mutableListOf<CoinInfo>()
 
@@ -66,6 +71,23 @@ class Fragment11: Fragment() {
                 return true
             }
 
+        })
+
+        tab1adapter.setItemClickListener(object : Tab1adapter.OnItemClickListener {
+            override fun onClick(v: View, position: Int) {
+                val mDialogView = LayoutInflater.from(context).inflate(R.layout.fragment_tab1_buy, null)
+
+                val amount : EditText = mDialogView.findViewById(R.id.orderCount)
+                val orderPrice : TextView = mDialogView.findViewById(R.id.orderPrice)
+                val canOrderPrice : TextView = mDialogView.findViewById(R.id.canOrderPrice)
+                val orderTotal : TextView = mDialogView.findViewById(R.id.orderTotalPrice)
+
+                orderPrice.text = datas[position].price
+                orderTotal.text = (((datas[position].price).toDouble())*(amount.text.toString().toInt())).toString()
+
+                val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle(datas[position].name)
+                mBuilder.show()
+            }
         })
 
         return binding.root

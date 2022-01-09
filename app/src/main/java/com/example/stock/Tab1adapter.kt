@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Tab1adapter(private val context: Context, var datas: MutableList<CoinInfo>) : RecyclerView.Adapter<Tab1adapter.ViewHolder>(), Filterable {
 
+    private lateinit var itemClickListener : OnItemClickListener
     var unfiltered = datas
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,6 +25,17 @@ class Tab1adapter(private val context: Context, var datas: MutableList<CoinInfo>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(datas[position])
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
