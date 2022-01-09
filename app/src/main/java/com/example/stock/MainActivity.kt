@@ -9,6 +9,7 @@ import com.example.stock.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import io.socket.client.Socket
 import com.example.stock.GlobalApplication.Companion.mSocket
+import com.example.stock.GlobalApplication.Companion.user_id
 import com.google.android.material.snackbar.Snackbar
 import io.socket.client.IO
 
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
             mSocket.disconnect()
+            user_id = null
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

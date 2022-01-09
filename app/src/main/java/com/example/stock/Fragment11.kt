@@ -6,10 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.*
-import android.widget.EditText
-import android.widget.SearchView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,6 +18,10 @@ import com.android.volley.toolbox.Volley
 import com.example.stock.databinding.FragmentTab1CoinlistBinding
 import org.json.JSONArray
 import org.json.JSONException
+import com.example.stock.GlobalApplication.Companion.mSocket
+import com.example.stock.GlobalApplication.Companion.user_id
+import io.socket.emitter.Emitter
+import kotlin.math.ceil
 import org.json.JSONObject
 import org.w3c.dom.Text
 import java.text.DecimalFormat
@@ -86,6 +87,11 @@ class Fragment11: Fragment() {
                 val orderPrice : TextView = mDialogView.findViewById(R.id.orderPrice)
                 val canOrderPrice : TextView = mDialogView.findViewById(R.id.canOrderPrice)
                 val orderTotal : TextView = mDialogView.findViewById(R.id.orderTotalPrice)
+                val maedo : Button = mDialogView.findViewById(R.id.resetBtn)
+                val maesu : Button = mDialogView.findViewById(R.id.buyBtn)
+
+                maedo.setOnClickListener { Toast.makeText(context, "maedo", Toast.LENGTH_SHORT).show() }
+                maesu.setOnClickListener { Toast.makeText(context, "maesu", Toast.LENGTH_SHORT).show() }
 
                 amount.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -105,6 +111,12 @@ class Fragment11: Fragment() {
 
                     }
 
+                })
+
+                mSocket.emit("get_account", user_id)
+                mSocket.on("give_account", Emitter.Listener {
+                    val account = toDoubleFormat(JSONArray(it).getDouble(0)) + " KRW"
+                    canOrderPrice.text = account
                 })
 
                 orderPrice.text = datas[position].price
@@ -189,5 +201,4 @@ class Fragment11: Fragment() {
         }
         return df.format(num)
     }
-
 }
