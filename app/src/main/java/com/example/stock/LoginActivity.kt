@@ -1,5 +1,6 @@
 package com.example.stock
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -18,6 +19,8 @@ import io.socket.client.IO
 import io.socket.emitter.Emitter
 import java.net.URISyntaxException
 import com.example.stock.GlobalApplication.Companion.mSocket
+import com.kakao.sdk.user.UserApiClient
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -66,11 +69,44 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             else if (token != null) {
-                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)  //로그인 성공 시 다음 화면
+
+                UserApiClient.instance.me { user, error ->
+                    if (error != null) {
+                        Log.e(TAG, "사용자 정보 요청 실패", error)
+                    }
+                    else if (user != null) {
+                        //id = user.kakao_account.email
+                        val gson = Gson()
+
+                        id = user.id.toString()
+                        pwd = user.kakaoAccount?.email.toString()
+                        mSocket.connect()
+                        Log.d("SOCKET", "Connectionmin success : " + mSocket.id())
+                        mSocket.emit("kakao_signin", gson.toJson(PersonInfo(id,pwd)))
+                        //id = binding.idtext.text.toString()
+                        /*
+                        Log.i(TAG, "사용자 정보 요청 성공" +
+                                "\n회원번호: ${user.id}" +
+                                "\n이메일: ${user.kakaoAccount?.email}" +
+                                "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
+                                "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+
+                         */
+
+
+                    }
+                }
+                //intent.putExtra("name", getKakaoAccount().getProfile().getNickname()) //추가
+                //intent.putExtra("id", result.getKakaoAccount().getEmail()) //추가
+                //intent.putExtra("imgnumber", result.getKakaoAccount().getProfile().getProfileImageUrl()) //추가
                 startActivity(intent)
             }
         }
+
+
+
+
         binding.kakaoLoginButton.setOnClickListener {
             if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
                 LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
@@ -126,7 +162,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "아이디/비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
         }, 0)
         mSocket.disconnect()
-        mSocket = IO.socket("http://192.249.18.155:80") // Login fail, disconnect socket and reinitialize socket
+        mSocket = IO.socket("http://192.249.18.140:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
     }
 
     override fun onBackPressed() {
