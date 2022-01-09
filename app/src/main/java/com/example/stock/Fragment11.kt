@@ -2,9 +2,8 @@ package com.example.stock
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +28,7 @@ class Fragment11: Fragment() {
     private val binding get() = _binding!!
 
     lateinit var tab1adapter: Tab1adapter
-    val datas = mutableListOf<CoinInfo>()
+    private val datas = mutableListOf<CoinInfo>()
 
     companion object {
         var requestQueue: RequestQueue?=null
@@ -43,7 +42,7 @@ class Fragment11: Fragment() {
     ): View? {
         _binding = FragmentTab1CoinlistBinding.inflate(inflater, container, false)
 
-        tab1adapter = Tab1adapter(requireContext())
+        tab1adapter = Tab1adapter(requireContext(), datas)
         binding.recyclerView.adapter = tab1adapter
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
@@ -55,6 +54,19 @@ class Fragment11: Fragment() {
         if(requestQueue == null) {
             requestQueue = Volley.newRequestQueue(context)
         }
+
+        binding.searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                tab1adapter.filter.filter(newText)
+                return true
+            }
+
+        })
 
         return binding.root
     }

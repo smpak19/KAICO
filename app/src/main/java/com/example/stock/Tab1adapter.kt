@@ -5,12 +5,14 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Tab1adapter(private val context: Context) : RecyclerView.Adapter<Tab1adapter.ViewHolder>() {
+class Tab1adapter(private val context: Context, var datas: MutableList<CoinInfo>) : RecyclerView.Adapter<Tab1adapter.ViewHolder>(), Filterable {
 
-    var datas = mutableListOf<CoinInfo>()
+    var unfiltered = datas
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.coininfo_tab1, parent, false)
@@ -22,8 +24,6 @@ class Tab1adapter(private val context: Context) : RecyclerView.Adapter<Tab1adapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(datas[position])
     }
-
-
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val name: TextView = itemView.findViewById(R.id.hangul)
@@ -48,6 +48,35 @@ class Tab1adapter(private val context: Context) : RecyclerView.Adapter<Tab1adapt
                 price.setTextColor(Color.BLACK)
             }
             total.text = item.total
+        }
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                val charString = p0.toString()
+                datas = if(charString.isEmpty()) {
+                    unfiltered
+                } else {
+                    val filtered = mutableListOf<CoinInfo>()
+                    if(unfiltered != null) {
+                        for(info in unfiltered) {
+                            if(info.name.contains(charString) || info.ticker.contains(charString.uppercase())) {
+                                filtered.add(info)
+                            }
+                        }
+                    }
+                    filtered
+                }
+                val filterResult: FilterResults = FilterResults()
+                filterResult.values = datas
+                return filterResult
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                datas = p1?.values as MutableList<CoinInfo>
+                notifyDataSetChanged()
+            }
         }
     }
 }

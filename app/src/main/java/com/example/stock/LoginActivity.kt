@@ -77,13 +77,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else if (user != null) {
                         //id = user.kakao_account.email
-                        val gson = Gson()
-
                         id = user.id.toString()
                         pwd = user.kakaoAccount?.email.toString()
-                        mSocket.connect()
-                        Log.d("SOCKET", "Connectionmin success : " + mSocket.id())
-                        mSocket.emit("kakao_signin", gson.toJson(PersonInfo(id,pwd)))
+                        kakao_login()
                         //id = binding.idtext.text.toString()
                         /*
                         Log.i(TAG, "사용자 정보 요청 성공" +
@@ -143,13 +139,23 @@ class LoginActivity : AppCompatActivity() {
         mSocket.on("login_false", onFalse)
     }
 
-    val onConnect : Emitter.Listener = Emitter.Listener {
-        val gson = Gson()
-        mSocket.emit("login", gson.toJson(PersonInfo(id, pwd)))
-
+    private fun kakao_login(): Unit {
+        mSocket.connect()
+        Log.d("SOCKET", "Connection success : " + mSocket.id())
+        mSocket.on(Socket.EVENT_CONNECT, onConnect2)
+        mSocket.on("kakao_sign", onSign)
+        mSocket.on("kakao_true", onKtrue)
     }
 
-    val onTrue : Emitter.Listener = Emitter.Listener {
+    private val onSign : Emitter.Listener = Emitter.Listener {
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+        }, 0)
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private val onKtrue : Emitter.Listener = Emitter.Listener {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "환영합니다", Toast.LENGTH_SHORT).show()
         }, 0)
@@ -157,12 +163,31 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    val onFalse : Emitter.Listener = Emitter.Listener {
+    private val onConnect2 : Emitter.Listener = Emitter.Listener {
+        val gson = Gson()
+        mSocket.emit("kakao_signin", gson.toJson(PersonInfo(id,pwd)))
+    }
+
+    private val onConnect : Emitter.Listener = Emitter.Listener {
+        val gson = Gson()
+        mSocket.emit("login", gson.toJson(PersonInfo(id, pwd)))
+
+    }
+
+    private val onTrue : Emitter.Listener = Emitter.Listener {
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(this, "환영합니다", Toast.LENGTH_SHORT).show()
+        }, 0)
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private val onFalse : Emitter.Listener = Emitter.Listener {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "아이디/비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
         }, 0)
         mSocket.disconnect()
-        mSocket = IO.socket("http://192.249.18.140:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
+        mSocket = IO.socket("http://192.249.18.155:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
     }
 
     override fun onBackPressed() {
