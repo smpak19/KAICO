@@ -20,12 +20,14 @@ import org.json.JSONArray
 import org.json.JSONException
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
+import com.google.gson.Gson
 import io.socket.emitter.Emitter
 import kotlin.math.ceil
 import org.json.JSONObject
 import org.w3c.dom.Text
 import java.text.DecimalFormat
 
+public class BuyInfo(var userid: String?, var coinname: String, var amount: Double, var price: Double)
 
 class Fragment11: Fragment() {
 
@@ -90,9 +92,6 @@ class Fragment11: Fragment() {
                 val maedo : Button = mDialogView.findViewById(R.id.resetBtn)
                 val maesu : Button = mDialogView.findViewById(R.id.buyBtn)
 
-                maedo.setOnClickListener { Toast.makeText(context, "maedo", Toast.LENGTH_SHORT).show() }
-                maesu.setOnClickListener { Toast.makeText(context, "maesu", Toast.LENGTH_SHORT).show() }
-
                 amount.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -102,7 +101,7 @@ class Fragment11: Fragment() {
                         if(p0 == null || p0.isEmpty() ) {
                             orderTotal.text = "0 KRW"
                         } else {
-                            val s1 = toDoubleFormat(((price).toDouble())*(p0.toString().toDouble())) + " KRW"
+                            val s1 = toDoubleFormat((price.toDouble())*(p0.toString().toDouble())) + " KRW"
                             orderTotal.text = s1
                         }
                     }
@@ -121,7 +120,30 @@ class Fragment11: Fragment() {
 
                 orderPrice.text = datas[position].price
                 val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle(datas[position].name)
-                mBuilder.show()
+                val ad : AlertDialog = mBuilder.create()
+
+                maesu.setOnClickListener {
+                    val orderprice = orderTotal.text.toString().replace("KRW", "").replace(",", "").toDouble()
+                    val current = canOrderPrice.text.toString().replace("KRW", "").replace(",", "").toDouble()
+                    when {
+                        orderprice == 0.0 -> {
+                            Toast.makeText(context, "매수주문 오류: 매수 수량을 입력해주세요", Toast.LENGTH_SHORT).show()
+                        }
+                        orderprice <= current -> {
+                            val gson = Gson()
+                            mSocket.emit("buy", gson.toJson(BuyInfo(user_id, datas[position].ticker, amount.text.toString().toDouble(), orderprice)))
+                            mSocket.on("buy_success", Emitter.Listener {
+                                ad.dismiss()
+                            })
+                        }
+                        else -> {
+                            Toast.makeText(context, "매수주문 오류: 주문가능 금액이 부족합니다", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                maedo.setOnClickListener { ad.dismiss() }
+
+                ad.show()
             }
         })
 
