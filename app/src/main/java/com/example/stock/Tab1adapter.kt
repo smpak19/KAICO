@@ -40,9 +40,12 @@ class Tab1adapter(private val context: Context) : RecyclerView.Adapter<Tab1adapt
             if(item.rate.contains("+")) {
                 rate.setTextColor(Color.RED)
                 price.setTextColor(Color.RED)
-            } else {
+            } else if(item.rate.contains("-")) {
                 rate.setTextColor(Color.BLUE)
                 price.setTextColor(Color.BLUE)
+            } else {
+                rate.setTextColor(Color.BLACK)
+                price.setTextColor(Color.BLACK)
             }
             total.text = item.total
         }
