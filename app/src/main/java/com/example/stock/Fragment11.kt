@@ -2,6 +2,8 @@ package com.example.stock
 
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.widget.EditText
@@ -75,6 +77,9 @@ class Fragment11: Fragment() {
 
         tab1adapter.setItemClickListener(object : Tab1adapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
+
+                val price = datas[position].price.replace(",", "")
+
                 val mDialogView = LayoutInflater.from(context).inflate(R.layout.fragment_tab1_buy, null)
 
                 val amount : EditText = mDialogView.findViewById(R.id.orderCount)
@@ -82,9 +87,27 @@ class Fragment11: Fragment() {
                 val canOrderPrice : TextView = mDialogView.findViewById(R.id.canOrderPrice)
                 val orderTotal : TextView = mDialogView.findViewById(R.id.orderTotalPrice)
 
-                orderPrice.text = datas[position].price
-                orderTotal.text = (((datas[position].price).toDouble())*(amount.text.toString().toInt())).toString()
+                amount.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        if(p0 == null || p0.isEmpty() ) {
+                            orderTotal.text = "0 KRW"
+                        } else {
+                            val s1 = toDoubleFormat(((price).toDouble())*(p0.toString().toDouble())) + " KRW"
+                            orderTotal.text = s1
+                        }
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+
+                    }
+
+                })
+
+                orderPrice.text = datas[position].price
                 val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle(datas[position].name)
                 mBuilder.show()
             }

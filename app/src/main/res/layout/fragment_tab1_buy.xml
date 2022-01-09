@@ -74,7 +74,7 @@
                 android:gravity="right|center_vertical|center_horizontal|center"
                 android:inputType="numberDecimal"
                 android:padding="0dp"
-                android:text="0"
+                android:hint="수량을 입력하세요"
                 android:textColor="@color/black"
                 android:textCursorDrawable="@drawable/edittext_cursor_color_gray"
                 android:textSize="14sp" />
@@ -169,7 +169,7 @@
 
         <Button
             android:id="@+id/resetBtn"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="#354EDA"
@@ -179,7 +179,7 @@
 
         <Button
             android:id="@+id/buyBtn"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="#E53935"
