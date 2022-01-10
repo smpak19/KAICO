@@ -2,6 +2,8 @@ package com.example.stock
 
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -20,6 +22,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
+import com.example.stock.GlobalApplication.Companion.currentPrice
 import com.google.gson.Gson
 import io.socket.emitter.Emitter
 import kotlin.math.ceil
@@ -41,6 +44,8 @@ class Fragment11: Fragment() {
     private val binding get() = _binding!!
     lateinit var tab1adapter: Tab1adapter
     private val datas = mutableListOf<CoinInfo>()
+
+    var amo : Double = 0.0
 
     companion object {
         var requestQueue: RequestQueue?=null
@@ -124,6 +129,10 @@ class Fragment11: Fragment() {
                 val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle(datas[position].name)
                 val ad : AlertDialog = mBuilder.create()
 
+                val ngson = Gson()
+                mSocket.emit("get_amount", ngson.toJson(Info(user_id, datas[position].ticker)))
+                mSocket.on("set_amount", Emitter.Listener { amo = JSONArray(it).getDouble(0) })
+
                 maesu.setOnClickListener {
                     val orderprice = orderTotal.text.toString().replace("KRW", "").replace(",", "").toDouble()
                     val current = canOrderPrice.text.toString().replace("KRW", "").replace(",", "").toDouble()
@@ -136,6 +145,7 @@ class Fragment11: Fragment() {
                             mSocket.emit("buy", gson.toJson(BuyInfo(user_id, datas[position].ticker, amount.text.toString().toDouble(), orderprice)))
                             mSocket.on("buy_success", Emitter.Listener {
                                 ad.dismiss()
+
                             })
                         }
                         else -> {
@@ -145,32 +155,30 @@ class Fragment11: Fragment() {
                 }
 
                 // 매도 로직 : 해당 코인 현재 보유 개수 구하기 -> 1. 수량 0 : 매도주문 오류 매도수량 입력 2. 수량 오버 : 보유 개수 부족 3. else 매도주문 체결 , dismiss
-                // 이외 할 것 : 새로 고침 시 평가손익 계산 로직 짜기, 랭킹 구현하기, 유저인포 구현하기.
+                // 이외 할 것 : 새로 고침 시 평가손익 계산 로직 짜기(제일 어려움 가격 어떻게 불러오지?), 랭킹 구현하기, 유저인포 구현하기.
                 maedo.setOnClickListener {
                     val orderprice = orderTotal.text.toString().replace("KRW", "").replace(",", "").toDouble()
                     val currentamount = amount.text.toString().toDouble()
-                    val gson = Gson()
-                    mSocket.emit("get_amount", gson.toJson(Info(user_id, datas[position].ticker)))
-                    mSocket.on("set_amount", Emitter.Listener {
-                        val amo = JSONArray(it).getDouble(0)
 
-                        when {
-                            orderprice == 0.0 -> {
+                    when {
+                        orderprice == 0.0 -> {
+                            Handler(Looper.getMainLooper()).postDelayed({
                                 Toast.makeText(context, "매도주문 오류: 매도수량을 입력해주세요", Toast.LENGTH_SHORT).show()
-                            }
-                            currentamount <= amo -> {
-                                val gson = Gson()
-                                mSocket.emit("sell", gson.toJson(BuyInfo(user_id, datas[position].ticker, currentamount, orderprice)))
-                                mSocket.on("sell_success", Emitter.Listener {
-                                    ad.dismiss()
-                                })
-                            }
-                            else -> {
-                                Toast.makeText(context, "매도주문 오류: 보유 수량 초과 (현재 $amo 개)", Toast.LENGTH_SHORT).show()
-                            }
+                            }, 0)
                         }
-
-                    })
+                        currentamount <= amo -> {
+                            val gson = Gson()
+                            mSocket.emit("sell", gson.toJson(BuyInfo(user_id, datas[position].ticker, currentamount, orderprice)))
+                            mSocket.on("sell_success", Emitter.Listener {
+                                ad.dismiss()
+                            })
+                        }
+                        else -> {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                Toast.makeText(context, "매도주문 오류: 보유 수량 초과 (현재 $amo 개)", Toast.LENGTH_SHORT).show()
+                            }, 0)
+                        }
+                    }
 
                 }
 
@@ -178,6 +186,7 @@ class Fragment11: Fragment() {
             }
         })
 
+        binding.search.performClick()
         return binding.root
     }
 
@@ -225,6 +234,7 @@ class Fragment11: Fragment() {
                 val amount = jsonObject.get("signed_change_price").toString()
                 val total = toDoubleFormat(jsonObject.getDouble("acc_trade_price_24h")/1000000) + "백만"
                 datas.add(CoinInfo(name, ticker, trade, rate, total))
+                currentPrice[i] = datas[i].price
             }
             tab1adapter.datas = datas
             tab1adapter.notifyDataSetChanged()
