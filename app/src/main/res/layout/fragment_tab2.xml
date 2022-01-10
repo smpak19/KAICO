@@ -104,7 +104,7 @@
                         android:text="총 매수"
                         android:layout_weight="1"/>
                     <TextView
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:gravity="right|center_vertical|center_horizontal|center"
                         android:id="@+id/totalBuyView"
@@ -125,7 +125,7 @@
                         android:text="평가손익"
                         android:layout_weight="1"/>
                     <TextView
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:gravity="right|center_vertical|center_horizontal|center"
                         android:id="@+id/gainAndLossView"
@@ -154,7 +154,7 @@
                         android:text="총평가"
                         android:layout_weight="1"/>
                     <TextView
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:gravity="right|center_vertical|center_horizontal|center"
                         android:id="@+id/totalEvaluationView"
@@ -175,7 +175,7 @@
                         android:text="수익률"
                         android:layout_weight="1"/>
                     <TextView
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:gravity="right|center_vertical|center_horizontal|center"
                         android:id="@+id/yieldView"
