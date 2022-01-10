@@ -187,23 +187,14 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:id="@+id/noAssetView"
-                android:visibility="visible"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="보유 코인 목록"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:overScrollMode="never"
                 android:nestedScrollingEnabled="false"/>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>
