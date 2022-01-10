@@ -142,11 +142,12 @@ class Fragment11: Fragment() {
                         }
                         orderprice <= current -> {
                             val gson = Gson()
+                            Toast.makeText(context, "매수 주문이 체결되었습니다.", Toast.LENGTH_SHORT).show()
                             mSocket.emit("buy", gson.toJson(BuyInfo(user_id, datas[position].ticker, amount.text.toString().toDouble(), orderprice)))
                             mSocket.on("buy_success", Emitter.Listener {
                                 ad.dismiss()
-
                             })
+
                         }
                         else -> {
                             Toast.makeText(context, "매수주문 오류: 주문가능 금액이 부족합니다", Toast.LENGTH_SHORT).show()
@@ -157,6 +158,7 @@ class Fragment11: Fragment() {
                 // 매도 로직 : 해당 코인 현재 보유 개수 구하기 -> 1. 수량 0 : 매도주문 오류 매도수량 입력 2. 수량 오버 : 보유 개수 부족 3. else 매도주문 체결 , dismiss
                 // 이외 할 것 : 새로 고침 시 평가손익 계산 로직 짜기(제일 어려움 가격 어떻게 불러오지?), 랭킹 구현하기, 유저인포 구현하기.
                 maedo.setOnClickListener {
+
                     val orderprice = orderTotal.text.toString().replace("KRW", "").replace(",", "").toDouble()
                     val currentamount = amount.text.toString().toDouble()
 
@@ -168,6 +170,7 @@ class Fragment11: Fragment() {
                         }
                         currentamount <= amo -> {
                             val gson = Gson()
+                            Toast.makeText(context, "매도 주문이 체결되었습니다.", Toast.LENGTH_SHORT).show()
                             mSocket.emit("sell", gson.toJson(BuyInfo(user_id, datas[position].ticker, currentamount, orderprice)))
                             mSocket.on("sell_success", Emitter.Listener {
                                 ad.dismiss()
@@ -186,7 +189,9 @@ class Fragment11: Fragment() {
             }
         })
 
-        binding.search.performClick()
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = Runnable {binding.search.performClick()}
+        handler.postDelayed(runnable,3000)
         return binding.root
     }
 

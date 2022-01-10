@@ -14,6 +14,7 @@ import io.socket.client.IO
 import io.socket.emitter.Emitter
 import java.net.URISyntaxException
 import com.example.stock.GlobalApplication.Companion.mSocket
+import com.example.stock.GlobalApplication.Companion.user_id
 
 public class PersonInfo(var id: String, var pwd: String)
 
@@ -60,6 +61,7 @@ class SigninActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
         }, 0)
+        user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
