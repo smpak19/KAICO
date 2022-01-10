@@ -18,6 +18,7 @@ import com.google.gson.Gson
 import io.socket.emitter.Emitter
 import org.json.JSONArray
 import java.text.DecimalFormat
+import kotlin.concurrent.timer
 
 class Cur(var userid: String?, var current: String)
 
@@ -120,6 +121,11 @@ class Fragment2 : Fragment() {
             mSocket.emit("set_current", gson.toJson(Cur(user_id, (acc+sum).toString())))
         }
 
+        timer(period = 1000, initialDelay = 3000) {
+            activity?.runOnUiThread {
+                binding.assetTitle.performClick()
+            }
+        }
         return binding.root
     }
 

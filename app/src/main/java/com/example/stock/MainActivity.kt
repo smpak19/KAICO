@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.viewpager.offscreenPageLimit = 4
         binding.viewpager.apply {
             adapter = MyPagerAdapter(context as FragmentActivity)
         }
