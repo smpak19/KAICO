@@ -192,7 +192,7 @@ class LoginActivity : AppCompatActivity() {
         }, 0)
         mSocket.disconnect()
         user_id = null
-        mSocket = IO.socket("http://192.249.18.140:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
+        mSocket = IO.socket("http://192.249.18.155:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
     }
 
     override fun onBackPressed() {
