@@ -25,6 +25,7 @@ import com.example.stock.GlobalApplication.Companion.user_id
 import org.json.JSONArray
 import org.json.JSONException
 import java.text.DecimalFormat
+import kotlin.concurrent.timer
 
 class Fragment3 : Fragment() {
     private var _binding: FragmentTab3Binding? = null
@@ -40,9 +41,13 @@ class Fragment3 : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        mSocket.emit("get_current")
-        mSocket.on("here", Emitter.Listener {
-            array = JSONArray(it).getJSONArray(0)})
+        timer(period = 3000, initialDelay = 3000) {
+            activity?.runOnUiThread {
+                mSocket.emit("get_current")
+                mSocket.on("here", Emitter.Listener {
+                    array = JSONArray(it).getJSONArray(0)})
+            }
+        }
 
         _binding = FragmentTab3Binding.inflate(inflater, container, false)
         tab3adapter = Tab3adapter(requireContext(), datas)
