@@ -135,7 +135,7 @@ class Fragment2 : Fragment() {
                 val coinname = coin10[i]
                 val tickers = top10[i]
                 val ticker = "($tickers)"
-                val amount = array[i] + " " + tickers
+                val amount = toDoubleFormat(array[i].toDouble()) + " " + tickers
                 val avg = toDoubleFormat(list[i].toDouble()/array[i].toDouble()) + " KRW"
 
                 val num = (array[i].toDouble())*(currentPrice[i].replace(",", "").toDouble())
