@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val tabIcon = listOf( //탭의 아이콘 리스트
         R.drawable.ic_launcher_background,
         R.drawable.ic_launcher_background,
+        R.drawable.ic_launcher_background,
         R.drawable.ic_launcher_background
     )
 
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             if(position==0) tab.text = "코인목록"
             if(position==1) tab.text = "투자내역"
             if(position==2) tab.text = "랭킹"
+            if(position==3) tab.text = "사용자"
             tab.setIcon(tabIcon[position])  //탭 아이콘은 위에 만들었던 리스트에서 가져와서 포지션에 따라 다르게 나옴
         }.attach()
     }
