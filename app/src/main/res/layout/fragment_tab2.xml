@@ -132,7 +132,7 @@
                         android:paddingRight="20dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="일단 0"
+                        android:text="0"
                         android:layout_weight="2"/>
                 </LinearLayout>
                 <LinearLayout
@@ -162,7 +162,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
-                        android:text="일단 string/asset_no_data"
+                        android:text="0"
                         android:layout_weight="2"/>
                     <TextView
                         android:textSize="14sp"
@@ -182,7 +182,7 @@
                         android:paddingRight="20dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="여기도 일단 0"
+                        android:text="0"
                         android:layout_weight="2"/>
                 </LinearLayout>
             </LinearLayout>

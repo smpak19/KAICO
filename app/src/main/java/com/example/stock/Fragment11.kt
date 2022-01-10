@@ -22,6 +22,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
+import com.example.stock.GlobalApplication.Companion.currentPrice
 import com.google.gson.Gson
 import io.socket.emitter.Emitter
 import kotlin.math.ceil
@@ -144,6 +145,7 @@ class Fragment11: Fragment() {
                             mSocket.emit("buy", gson.toJson(BuyInfo(user_id, datas[position].ticker, amount.text.toString().toDouble(), orderprice)))
                             mSocket.on("buy_success", Emitter.Listener {
                                 ad.dismiss()
+
                             })
                         }
                         else -> {
@@ -184,6 +186,7 @@ class Fragment11: Fragment() {
             }
         })
 
+        binding.search.performClick()
         return binding.root
     }
 
@@ -231,6 +234,7 @@ class Fragment11: Fragment() {
                 val amount = jsonObject.get("signed_change_price").toString()
                 val total = toDoubleFormat(jsonObject.getDouble("acc_trade_price_24h")/1000000) + "백만"
                 datas.add(CoinInfo(name, ticker, trade, rate, total))
+                currentPrice[i] = datas[i].price
             }
             tab1adapter.datas = datas
             tab1adapter.notifyDataSetChanged()
