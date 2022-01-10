@@ -10,6 +10,7 @@
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/coin_list_button_checked.xml" value="0.28802083333333334" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/edittext_cursor_color_gray.xml" value="0.33589743589743587" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/ic_launcher_background.xml" value="0.33589743589743587" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/drawable/item_together.xml" value="0.28072916666666664" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_main.xml" value="0.11347517730496454" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/activity_signin.xml" value="0.26992753623188404" />
@@ -26,8 +27,10 @@
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab2_buy.xml" value="0.271875" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab2_coininfo.xml" value="0.271875" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab2_coinlist.xml" value="0.271875" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab3.xml" value="0.335" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab4.xml" value="0.335" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/fragment_tab44.xml" value="0.26992753623188404" />
+        <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/item_together.xml" value="0.26458333333333334" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/kakao_login.xml" value="0.25" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/kkk.xml" value="0.26992753623188404" />
         <entry key="..\:/GitHub/madcamp2st/Stock/app/src/main/res/layout/test.xml" value="0.25" />
