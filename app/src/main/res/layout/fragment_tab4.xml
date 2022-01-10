@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:background="#A4A4A4"
+        android:background="@color/Stock_light_grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"

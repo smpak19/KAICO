@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Stock_blue">#07518A</color>
+    <color name="Stock_light_blue">#1E8FC7</color>>
+    <color name="Stock_grey">#A4A4A4</color>>
+    <color name="Stock_light_grey">#F1F1F1</color>>
 </resources>

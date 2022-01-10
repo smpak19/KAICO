@@ -3,6 +3,9 @@
     package="com.example.stock">
     <!-- 카카오 로그인을 위한 인터넷 사용 권한 설정-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+        <package android:name="com.sec.android.app.shealth" />
+    </queries>
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
