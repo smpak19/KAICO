@@ -2,9 +2,12 @@
 buildscript {
     ext.kotlin_version = '1.6.10'
     repositories {
+        maven { url 'https://jitpack.io' }
         google()
         mavenCentral()
+
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
@@ -14,6 +17,8 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

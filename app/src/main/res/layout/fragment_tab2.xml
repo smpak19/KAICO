@@ -203,7 +203,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:overScrollMode="never"
-                android:nestedScrollingEnabled="false"/>
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>
