@@ -91,7 +91,7 @@ class Fragment2 : Fragment() {
         _binding = null
     }
 
-    fun toDoubleFormat(num: Double): String? {
+    private fun toDoubleFormat(num: Double): String? {
         var df: DecimalFormat? = null
         df = when {
             num in 100.0..999.9 -> {

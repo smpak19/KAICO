@@ -54,13 +54,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="유저명@+id/username"
+                android:id="@+id/username"
+                android:text="유저명"
                 android:textAlignment="center"
                 android:textColor="#9394B8"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/btn_person"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
@@ -73,9 +75,10 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:iconTint="#393030" />
+                app:iconTint="#393030"/>
 
             <Button
+                android:id="@+id/btn_pw"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
@@ -87,9 +90,10 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <Button
+                android:id="@+id/btn_logout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
@@ -105,6 +109,7 @@
                 app:iconTint="#393030" />
 
             <Button
+                android:id="@+id/btn_reset"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"

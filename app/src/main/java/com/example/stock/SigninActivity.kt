@@ -69,6 +69,6 @@ class SigninActivity : AppCompatActivity() {
             Toast.makeText(this, "아이디가 중복됩니다.", Toast.LENGTH_SHORT).show()
         }, 0)
         mSocket.disconnect()
-        mSocket = IO.socket("http://192.249.18.140:80")
+        mSocket = IO.socket("http://192.249.18.155:80")
     }
 }
