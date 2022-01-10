@@ -24,6 +24,8 @@
                     android:textColor="@color/black"
                     android:id="@+id/assetTitle"
                     android:padding="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -71,7 +73,7 @@
                             android:id="@+id/totalTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="평가손익"/>
+                            android:text="총 보유자산"/>
                         <TextView
                             android:textSize="20sp"
                             android:textColor="@color/black"

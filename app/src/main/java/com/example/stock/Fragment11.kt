@@ -20,12 +20,16 @@ import org.json.JSONArray
 import org.json.JSONException
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
+import com.google.gson.Gson
 import io.socket.emitter.Emitter
 import kotlin.math.ceil
 import org.json.JSONObject
 import org.w3c.dom.Text
 import java.text.DecimalFormat
+import kotlin.properties.Delegates
 
+public class BuyInfo(var userid: String?, var coinname: String, var amount: Double, var price: Double)
+public class Info(var userid: String?, var ticker: String)
 
 class Fragment11: Fragment() {
 
@@ -90,9 +94,6 @@ class Fragment11: Fragment() {
                 val maedo : Button = mDialogView.findViewById(R.id.resetBtn)
                 val maesu : Button = mDialogView.findViewById(R.id.buyBtn)
 
-                maedo.setOnClickListener { Toast.makeText(context, "maedo", Toast.LENGTH_SHORT).show() }
-                maesu.setOnClickListener { Toast.makeText(context, "maesu", Toast.LENGTH_SHORT).show() }
-
                 amount.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -102,7 +103,7 @@ class Fragment11: Fragment() {
                         if(p0 == null || p0.isEmpty() ) {
                             orderTotal.text = "0 KRW"
                         } else {
-                            val s1 = toDoubleFormat(((price).toDouble())*(p0.toString().toDouble())) + " KRW"
+                            val s1 = toDoubleFormat((price.toDouble())*(p0.toString().toDouble())) + " KRW"
                             orderTotal.text = s1
                         }
                     }
@@ -121,7 +122,59 @@ class Fragment11: Fragment() {
 
                 orderPrice.text = datas[position].price
                 val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle(datas[position].name)
-                mBuilder.show()
+                val ad : AlertDialog = mBuilder.create()
+
+                maesu.setOnClickListener {
+                    val orderprice = orderTotal.text.toString().replace("KRW", "").replace(",", "").toDouble()
+                    val current = canOrderPrice.text.toString().replace("KRW", "").replace(",", "").toDouble()
+                    when {
+                        orderprice == 0.0 -> {
+                            Toast.makeText(context, "매수주문 오류: 매수 수량을 입력해주세요", Toast.LENGTH_SHORT).show()
+                        }
+                        orderprice <= current -> {
+                            val gson = Gson()
+                            mSocket.emit("buy", gson.toJson(BuyInfo(user_id, datas[position].ticker, amount.text.toString().toDouble(), orderprice)))
+                            mSocket.on("buy_success", Emitter.Listener {
+                                ad.dismiss()
+                            })
+                        }
+                        else -> {
+                            Toast.makeText(context, "매수주문 오류: 주문가능 금액이 부족합니다", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                // 매도 로직 : 해당 코인 현재 보유 개수 구하기 -> 1. 수량 0 : 매도주문 오류 매도수량 입력 2. 수량 오버 : 보유 개수 부족 3. else 매도주문 체결 , dismiss
+                // 이외 할 것 : 새로 고침 시 평가손익 계산 로직 짜기, 랭킹 구현하기, 유저인포 구현하기.
+                maedo.setOnClickListener {
+                    val orderprice = orderTotal.text.toString().replace("KRW", "").replace(",", "").toDouble()
+                    val currentamount = amount.text.toString().toDouble()
+                    val gson = Gson()
+                    mSocket.emit("get_amount", gson.toJson(Info(user_id, datas[position].ticker)))
+                    mSocket.on("set_amount", Emitter.Listener {
+                        val amo = JSONArray(it).getDouble(0)
+
+                        when {
+                            orderprice == 0.0 -> {
+                                Toast.makeText(context, "매도주문 오류: 매도수량을 입력해주세요", Toast.LENGTH_SHORT).show()
+                            }
+                            currentamount <= amo -> {
+                                val gson = Gson()
+                                mSocket.emit("sell", gson.toJson(BuyInfo(user_id, datas[position].ticker, currentamount, orderprice)))
+                                mSocket.on("sell_success", Emitter.Listener {
+                                    ad.dismiss()
+                                })
+                            }
+                            else -> {
+                                Toast.makeText(context, "매도주문 오류: 보유 수량 초과 (현재 $amo 개)", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    })
+
+                }
+
+                ad.show()
             }
         })
 
