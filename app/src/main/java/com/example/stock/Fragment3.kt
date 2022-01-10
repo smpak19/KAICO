@@ -33,17 +33,6 @@ class Fragment3 : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentTab3Binding.inflate(inflater, container, false)
 
-        GlobalApplication.mSocket.emit("get_account", GlobalApplication.user_id)
-        GlobalApplication.mSocket.on("give_account", Emitter.Listener {
-            val account = toDoubleFormat(JSONArray(it).getDouble(0))
-            binding.username.text = account
-        })
-
-        GlobalApplication.mSocket.emit("get_total", GlobalApplication.user_id)
-        GlobalApplication.mSocket.on("give_total", Emitter.Listener {
-            val total = toDoubleFormat(JSONArray(it).getDouble(0))
-            binding.totalkrw.text = total
-        })
         return binding.root
     }
 
