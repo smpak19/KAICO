@@ -51,12 +51,12 @@ class SigninActivity : AppCompatActivity() {
 
     }
 
-    val onConnect : Emitter.Listener = Emitter.Listener {
+    private val onConnect : Emitter.Listener = Emitter.Listener {
         val gson = Gson()
         mSocket.emit("signin", gson.toJson(PersonInfo(id,pwd)))
     }
 
-    val onSuc : Emitter.Listener = Emitter.Listener {
+    private val onSuc : Emitter.Listener = Emitter.Listener {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
         }, 0)
@@ -64,7 +64,7 @@ class SigninActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    val onDup : Emitter.Listener = Emitter.Listener {
+    private val onDup : Emitter.Listener = Emitter.Listener {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "아이디가 중복됩니다.", Toast.LENGTH_SHORT).show()
         }, 0)

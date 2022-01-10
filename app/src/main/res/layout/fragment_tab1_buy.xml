@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView2"
@@ -23,28 +23,30 @@
             android:text="주문 가능"
             android:textColor="@color/black"
             android:textSize="14sp" />
+
         <TextView
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:gravity="right|center_vertical|center_horizontal|center"
             android:id="@+id/canOrderPrice"
-            android:padding="10dp"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:text="0KRW"
             android:layout_weight="3"
-            android:autoSizeTextType="uniform"
-            android:autoSizeStepGranularity="2sp"
+            android:autoSizeMaxTextSize="16sp"
             android:autoSizeMinTextSize="8sp"
-            android:autoSizeMaxTextSize="16sp" />
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="right|center_vertical|center_horizontal|center"
+            android:padding="10dp"
+            android:text="0KRW"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -72,37 +74,40 @@
                 android:gravity="right|center_vertical|center_horizontal|center"
                 android:inputType="numberDecimal"
                 android:padding="0dp"
-                android:text="0"
+                android:hint="수량을 입력하세요"
                 android:textColor="@color/black"
                 android:textCursorDrawable="@drawable/edittext_cursor_color_gray"
                 android:textSize="14sp" />
         </LinearLayout>
+
         <Spinner
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
             android:id="@+id/orderCountSpinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
-            android:popupBackground="@color/black"
-            android:prompt="@string/orderCountSpinner_prompt"
             android:layout_weight="1"
             android:dropDownWidth="match_parent"
-            android:spinnerMode="dropdown"/>
+            android:gravity="center"
+            android:popupBackground="@color/black"
+            android:prompt="@string/orderCountSpinner_prompt"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:orientation="horizontal"
-            android:padding="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textView6"
@@ -113,53 +118,58 @@
                 android:text="가격"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
+
             <TextView
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="right|center_vertical|center_horizontal|center"
                 android:id="@+id/orderPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="right|center_vertical|center_horizontal|center"
                 android:text="604"
-                android:layout_weight="2" />
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <TextView
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:gravity="left|center_vertical|center_horizontal|center"
             android:id="@+id/textView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical|center_horizontal|center"
             android:text="주문 총액"
-            android:layout_weight="1" />
-        <TextView
-            android:textSize="14sp"
             android:textColor="@color/black"
-            android:gravity="right|center_vertical|center_horizontal|center"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/orderTotalPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right|center_vertical|center_horizontal|center"
             android:text="0KRW"
-            android:layout_weight="2" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/resetBtn"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="#354EDA"
@@ -169,7 +179,7 @@
 
         <Button
             android:id="@+id/buyBtn"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="#E53935"
@@ -177,13 +187,24 @@
             android:textColor="#ffffff"
             android:textSize="14sp" />
     </LinearLayout>
-    <LinearLayout android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"/>
-    <LinearLayout android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 </LinearLayout>

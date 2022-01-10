@@ -11,7 +11,8 @@ import io.socket.client.Socket
 class GlobalApplication : Application(){
 
     companion object {
-        var mSocket : Socket = IO.socket("http://192.249.18.140:80") //포트번호192.249.18.155:80
+        var mSocket : Socket = IO.socket("http://192.249.18.155:80") //포트번호192.249.18.155:80
+        var user_id : String? = null
     }
 
     override fun onCreate() {
