@@ -29,6 +29,7 @@ import kotlin.math.ceil
 import org.json.JSONObject
 import org.w3c.dom.Text
 import java.text.DecimalFormat
+import java.util.*
 import kotlin.concurrent.timer
 import kotlin.properties.Delegates
 
@@ -45,6 +46,7 @@ class Fragment11: Fragment() {
     private val binding get() = _binding!!
     lateinit var tab1adapter: Tab1adapter
     private val datas = mutableListOf<CoinInfo>()
+    private  lateinit var timer : Timer
 
     var amo : Double = 0.0
 
@@ -189,13 +191,18 @@ class Fragment11: Fragment() {
             }
         })
 
-        timer(period = 1000, initialDelay = 0) {
+        timer = timer(period = 1000, initialDelay = 0) {
             activity?.runOnUiThread {
                 binding.search.performClick()
             }
         }
 
         return binding.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timer.cancel()
     }
 
     override fun onDestroyView() {

@@ -18,6 +18,7 @@ import com.google.gson.Gson
 import io.socket.emitter.Emitter
 import org.json.JSONArray
 import java.text.DecimalFormat
+import java.util.*
 import kotlin.concurrent.timer
 
 class Cur(var userid: String?, var current: String)
@@ -31,6 +32,7 @@ class Fragment2 : Fragment() {
     private val binding get() = _binding!!
     private var info = mutableListOf<CoinListInfo>()
     lateinit var tab2adapter: Tab2adapter
+    private lateinit var timer: Timer
 
     private var array : List<String> = listOf("0", "0", "0", "0", "0", "0", "0", "0", "0", "0")
     private var list : List<String> = listOf("0", "0", "0", "0", "0", "0", "0", "0", "0", "0")
@@ -119,7 +121,7 @@ class Fragment2 : Fragment() {
         }
 
 
-        timer(period = 2000, initialDelay = 3000) {
+        timer = timer(period = 2000, initialDelay = 3000) {
             activity?.runOnUiThread {
                 binding.assetTitle.performClick()
             }
@@ -179,5 +181,10 @@ class Fragment2 : Fragment() {
             }
         }
         return df.format(num)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timer.cancel()
     }
 }
