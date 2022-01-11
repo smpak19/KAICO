@@ -28,7 +28,7 @@ KAIST Cryptocurrency Mock Investment Application
 먼저, 간단한 DB 유저 스키마 소개를 하겠습니다.  
 본 어플리케이션은 단 하나의 스키마를 사용하였고, 각각의 정보는 아이디, 비밀번호, 현재 현금 보유량, 가상화폐 보유 목록(array)로 구성됩니다.
 
-'''Kotlin
+``` Kotlin
 const UserSchema = new mongoose.Schema({
     name: String,
     pass: String,
@@ -44,7 +44,7 @@ const UserSchema = new mongoose.Schema({
     },
 })
 
-'''
+``` 
 UpBit API 를 사용하여 가상화폐의 실시간 시세를 불러와 보여주는 탭입니다. 타이머 기능을 이용하여 1초 간격으로 업데이트 되도록 설정되었습니다.  
 초당 API 요청 제한이 있어 제공되는 가상화폐의 개수는 거래량 상위, 혹은 제가 실제로 거래했던 종류로 10개만 제공됩니다.  
 검색 기능을 통해 원하는 가상화폐의 정보를 찾을 수 있습니다. 티커, 한글 이름 모두 가능합니다.  
