@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             mSocket.disconnect()
             user_id = null
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
+            finish()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
