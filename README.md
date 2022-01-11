@@ -2,7 +2,7 @@
 업비트 API를 이용한 가상화폐 모의 투자 어플리케이션
  
 <img src="https://user-images.githubusercontent.com/49427080/148929638-7c02ee2b-f2fd-4669-8b65-d3f77b76eeea.gif" width="200" height="400"/>
-> Lottie를 이용한 Splash 화면
+Lottie를 이용한 Splash 화면
 
 ## 로그인
 
