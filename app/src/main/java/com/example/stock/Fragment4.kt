@@ -1,5 +1,6 @@
 package com.example.stock
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
@@ -48,7 +49,7 @@ class Fragment4: Fragment() {
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
-            activity?.finish()
+            requireActivity().finish()
 
         }
 
@@ -100,7 +101,7 @@ class Fragment4: Fragment() {
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
-            activity?.finish()
+            requireActivity().finish()
         }
 
 

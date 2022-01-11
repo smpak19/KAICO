@@ -64,6 +64,7 @@ class SigninActivity : AppCompatActivity() {
         user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private val onDup : Emitter.Listener = Emitter.Listener {
@@ -72,5 +73,12 @@ class SigninActivity : AppCompatActivity() {
         }, 0)
         mSocket.disconnect()
         mSocket = IO.socket("http://192.249.18.155:80")
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
