@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="사용자명 여기에"
-                android:textColor="@color/Stock_blue"
+                android:textColor="@color/Stock_light_blue"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 

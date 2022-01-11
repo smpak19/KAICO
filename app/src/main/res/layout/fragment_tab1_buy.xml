@@ -80,18 +80,6 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/orderCountSpinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:dropDownWidth="match_parent"
-            android:gravity="center"
-            android:popupBackground="@color/black"
-            android:prompt="@string/orderCountSpinner_prompt"
-            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <LinearLayout

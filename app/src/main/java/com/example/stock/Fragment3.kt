@@ -12,13 +12,7 @@ import com.example.stock.databinding.FragmentTab3Binding
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.*
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+
 import io.socket.emitter.Emitter
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
