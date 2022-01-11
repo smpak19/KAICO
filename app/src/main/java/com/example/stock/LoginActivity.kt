@@ -153,6 +153,7 @@ class LoginActivity : AppCompatActivity() {
         user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private val onKtrue : Emitter.Listener = Emitter.Listener {
@@ -162,6 +163,7 @@ class LoginActivity : AppCompatActivity() {
         user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private val onConnect2 : Emitter.Listener = Emitter.Listener {
@@ -182,6 +184,7 @@ class LoginActivity : AppCompatActivity() {
         user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private val onFalse : Emitter.Listener = Emitter.Listener {

@@ -97,17 +97,18 @@
                 android:layout_height="wrap_content"
                 android:text="총매수"
                 android:layout_weight="1"/>
+
             <TextView
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:gravity="right|center_vertical|center_horizontal|center"
                 android:id="@+id/totalBuyView"
-                android:paddingRight="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:layout_weight="2"
+                android:gravity="right|center_vertical|center_horizontal|center"
+                android:paddingRight="20dp"
                 android:text="0"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"
+                android:textSize="15sp" />
             <TextView
                 android:textSize="14sp"
                 android:textColor="@color/black"
@@ -118,17 +119,18 @@
                 android:layout_marginLeft="5dp"
                 android:text="평가손익"
                 android:layout_weight="1"/>
+
             <TextView
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:background="@drawable/layout_background"
-                android:gravity="right|center_vertical|center_horizontal|center"
                 android:id="@+id/gainAndLossView"
-                android:paddingRight="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/layout_background"
+                android:gravity="right|center_vertical|center_horizontal|center"
+                android:paddingRight="20dp"
                 android:text="0"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"
+                android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -149,17 +151,18 @@
                 android:layout_height="wrap_content"
                 android:text="총평가"
                 android:layout_weight="1"/>
+
             <TextView
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:gravity="right|center_vertical|center_horizontal|center"
                 android:id="@+id/totalEvaluationView"
-                android:paddingRight="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:layout_weight="2"
+                android:gravity="right|center_vertical|center_horizontal|center"
+                android:paddingRight="20dp"
                 android:text="0"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"
+                android:textSize="15sp" />
             <TextView
                 android:textSize="14sp"
                 android:textColor="@color/black"
@@ -170,17 +173,18 @@
                 android:layout_marginLeft="5dp"
                 android:text="수익률"
                 android:layout_weight="1"/>
+
             <TextView
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:background="@drawable/layout_background"
-                android:gravity="right|center_vertical|center_horizontal|center"
                 android:id="@+id/yieldView"
-                android:paddingRight="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/layout_background"
+                android:gravity="right|center_vertical|center_horizontal|center"
+                android:paddingRight="20dp"
                 android:text="0"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
     <androidx.core.widget.NestedScrollView

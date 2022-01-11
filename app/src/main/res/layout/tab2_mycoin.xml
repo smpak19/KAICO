@@ -133,7 +133,7 @@
                 android:paddingRight="20dp"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/e_price"
@@ -144,7 +144,7 @@
                 android:paddingRight="20dp"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -200,7 +200,7 @@
                 android:paddingRight="20dp"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/buy_price"
@@ -211,7 +211,7 @@
                 android:paddingRight="20dp"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout

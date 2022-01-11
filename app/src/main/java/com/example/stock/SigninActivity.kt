@@ -64,6 +64,7 @@ class SigninActivity : AppCompatActivity() {
         user_id = id
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private val onDup : Emitter.Listener = Emitter.Listener {
