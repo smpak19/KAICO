@@ -1,8 +1,14 @@
 # KAICO
+KAIST Cryptocurrency Mock Investment Application
 업비트 API를 이용한 가상화폐 모의 투자 어플리케이션
+
+## REMARK
+<img width="100%" src="https://user-images.githubusercontent.com/96763888/148904692-af7d43ec-db94-4d57-85d7-4b8b98f3f981.gif" />
+<p align="center"><em>지금, 독수리는 고고하게 시장을 관망하고 있다.</em></p>
+<p align="center"><em>At the moment, the eagle is obediently watching the market.</em></p>
  
 <img src="https://user-images.githubusercontent.com/49427080/148929638-7c02ee2b-f2fd-4669-8b65-d3f77b76eeea.gif" width="200" height="400"/>
-Lottie를 이용한 Splash 화면
+> Lottie를 이용한 Splash 화면
 
 ## 로그인
 
@@ -38,13 +44,10 @@ Lottie를 이용한 Splash 화면
 * 로그아웃 - 앱 로그아웃을 할 수 있다. 
 * 앱 초기화 - 저장된 보유 자산을 초기화한다.
 
-## REMARK
-<img width="100%" src="https://user-images.githubusercontent.com/96763888/148904692-af7d43ec-db94-4d57-85d7-4b8b98f3f981.gif" />
-<p align="center"><em>지금, 독수리는 고고하게 시장을 관망하고 있다.</em></p>
-<p align="center"><em>At the moment, the eagle is obediently watching the market.</em></p>
 
 ## CREDITS
-
+박승민 : smpak@kaist.ac.kr
+김민정 : 
 
 ### Node.js, Socket.io, MongoDB
 
