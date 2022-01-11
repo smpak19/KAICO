@@ -39,7 +39,7 @@ class Fragment11: Fragment() {
 
     // 거래량 상위 10위 코인
     private val top10 : Array<String> = arrayOf("BTC", "LINK", "ETH", "XRP", "SAND", "DOGE", "BORA", "BTT", "ADA", "EOS")
-    private val coin10 : Array<String> = arrayOf("비트코인", "체인링크", "이더리움", "리플", "샌드박스", "도지코인", "보라", "비트토렌트", "에이다", "이오")
+    private val coin10 : Array<String> = arrayOf("비트코인", "체인링크", "이더리움", "리플", "샌드박스", "도지코인", "보라", "비트토렌트", "에이다", "이오스")
 
     private var _binding: FragmentTab1CoinlistBinding? = null
     private val binding get() = _binding!!
