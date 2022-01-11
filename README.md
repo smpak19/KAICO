@@ -8,15 +8,15 @@ KAIST Cryptocurrency Mock Investment Application
 <p align="center"><em>At the moment, the eagle is obediently watching the market.</em></p>
  
 <img src="https://user-images.githubusercontent.com/49427080/148929638-7c02ee2b-f2fd-4669-8b65-d3f77b76eeea.gif" width="200" height="400"/>
-> Lottie를 이용한 Splash 화면
+Lottie를 이용한 Splash 화면
 
 
 ## 로그인
 
 <img src = "https://user-images.githubusercontent.com/49427080/148937916-f8bc2f03-31e3-4067-8d4e-3051f8f2353b.gif" width="200" height="400"/> <img src = "https://user-images.githubusercontent.com/49427080/148938462-dc4a9638-3f13-4ead-a88e-99361bf9987c.gif" width="200" height="400"/>
 
-아이디와 비밀번호를 입력하여 로그인 할 수 있습니다. 해당 아이디가 DB에 존재하지 않거나 비밀번호가 다르면 로그인이 되지 않습니다.  
-회원 가입을 통해 새로 유저를 등록할 수 있습니다. 중복된 아이디 사용은 불가하며 회원가입 성공 시 자동으로 로그인됩니다.
+아이디와 비밀번호를 입력하여 로그인 할 수 있습니다.  해당 아이디가 DB에 존재하지 않거나 비밀번호가 다르면 로그인이 되지 않습니다.  
+회원 가입을 통해 새로 유저를 등록할 수 있습니다.  중복된 아이디 사용은 불가하며 회원가입 성공 시 자동으로 로그인됩니다.
 
 * 회원 가입 시 최초 제공 시드머니는 '5억 원' 입니다.
 
@@ -28,7 +28,7 @@ KAIST Cryptocurrency Mock Investment Application
 먼저, 간단한 DB 유저 스키마 소개를 하겠습니다.  
 본 어플리케이션은 단 하나의 스키마를 사용하였고, 각각의 정보는 아이디, 비밀번호, 현재 현금 보유량, 가상화폐 보유 목록(array)로 구성됩니다.
 
-``` Kotlin
+``` JavaScript
 const UserSchema = new mongoose.Schema({
     name: String,
     pass: String,
@@ -58,7 +58,7 @@ UpBit API 를 사용하여 가상화폐의 실시간 시세를 불러와 보여�
 
 ## Tab2 - 투자내역
 
-현재 유저의 가상화폐 보유량, 현금 보유량을 DB에서 가져와 총 자산 현황 및 가상화폐 종류별 자산 현황을 확인하는 곳입니다.  
+>현재 유저의 가상화폐 보유량, 현금 보유량을 DB에서 가져와 총 자산 현황 및 가상화폐 종류별 자산 현황을 확인하는 곳입니다.  
 실시간 가격변동을 반영하여 2초 간격으로 실시간 업데이트됩니다.  
 현재 현금 보유량, 총 자산 평가, 총 매수액, 매수 자산의 현재 평가금액, 수익률 및 수익금 등을 확인할 수 있으며 이 정보는 각각의 가상화폐별로 모두 확인할 수 있습니다.  
 보유하지 않은 가상화폐는 나타나지 않도록 수정했습니다.  
