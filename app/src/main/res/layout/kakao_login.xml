@@ -22,7 +22,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UPBIT"
+        android:text="K A I C O"
         android:textColor="#142387"
         android:textSize="48sp"
         android:textStyle="bold"

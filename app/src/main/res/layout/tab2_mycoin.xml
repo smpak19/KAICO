@@ -4,10 +4,10 @@
     android:id="@+id/buy_coinlist"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:foreground="?selectableItemBackground"
     android:orientation="vertical"
-    card_view:cardBackgroundColor="#FFFF"
+    android:layout_margin="10dp"
+    card_view:cardBackgroundColor="@color/Stock_light_grey"
     card_view:cardCornerRadius="8dp"
     card_view:contentPadding="10dp">
 
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -34,14 +34,13 @@
 
                 <TextView
                     android:id="@+id/mycoin_name_k"
-                    android:paddingLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textAlignment="center"
-                    android:background="@drawable/layout_background2"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="10dp"
                     android:text="보유코인이름"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <TextView
@@ -49,9 +48,8 @@
                     android:paddingLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/layout_background3"
                     android:layout_gravity="center"
-                    android:textAlignment="center"
+
                     android:text="보유코인영어이름"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -69,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="평가손익"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -94,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="평가손익여기"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -109,7 +109,7 @@
         </LinearLayout>
         <View
             android:layout_width="wrap_content"
-            android:layout_height="2dp"
+            android:layout_height="0.5dp"
             android:background="@color/Stock_grey"/>
 
         <LinearLayout
