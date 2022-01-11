@@ -12,13 +12,14 @@ import com.example.stock.databinding.FragmentTab3Binding
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import io.socket.emitter.Emitter
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
+import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONException
 import java.text.DecimalFormat
+import kotlin.concurrent.timer
 
 class Fragment3 : Fragment() {
     private var _binding: FragmentTab3Binding? = null
@@ -34,9 +35,17 @@ class Fragment3 : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        mSocket.emit("get_current")
-        mSocket.on("here", Emitter.Listener {
-            array = JSONArray(it).getJSONArray(0)})
+
+        timer(period = 2000, initialDelay = 3000) {
+            activity?.runOnUiThread {
+                val gson = Gson()
+                mSocket.emit("get_current", gson.toJson(currentPrice))
+                mSocket.on("here", Emitter.Listener {
+                    array = JSONArray(it).getJSONArray(0)})
+                binding.resetrank.performClick()
+            }
+        }
+
 
         _binding = FragmentTab3Binding.inflate(inflater, container, false)
         tab3adapter = Tab3adapter(requireContext(), datas)
@@ -61,9 +70,9 @@ class Fragment3 : Fragment() {
 
     private fun getData() {
         for (i in 0 until array.length()) {
-            val jsonObject = array.getJSONObject(i)
-            val name = jsonObject.getString("name")
-            val current = toDoubleFormat(jsonObject.getDouble("current"))
+            val json = array.getJSONArray(i)
+            val name = json.getString(0)
+            val current = toDoubleFormat(json.getDouble(1))
             datas.add(RankInfo((i+1).toString(), name, current))
         }
         tab3adapter.datas = datas

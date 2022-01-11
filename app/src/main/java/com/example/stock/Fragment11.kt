@@ -29,6 +29,7 @@ import kotlin.math.ceil
 import org.json.JSONObject
 import org.w3c.dom.Text
 import java.text.DecimalFormat
+import kotlin.concurrent.timer
 import kotlin.properties.Delegates
 
 public class BuyInfo(var userid: String?, var coinname: String, var amount: Double, var price: Double)
@@ -189,9 +190,12 @@ class Fragment11: Fragment() {
             }
         })
 
-        val handler = Handler(Looper.getMainLooper())
-        val runnable = Runnable {binding.search.performClick()}
-        handler.postDelayed(runnable,3000)
+        timer(period = 1000, initialDelay = 0) {
+            activity?.runOnUiThread {
+                binding.search.performClick()
+            }
+        }
+
         return binding.root
     }
 

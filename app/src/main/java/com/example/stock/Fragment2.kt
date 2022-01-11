@@ -18,13 +18,14 @@ import com.google.gson.Gson
 import io.socket.emitter.Emitter
 import org.json.JSONArray
 import java.text.DecimalFormat
+import kotlin.concurrent.timer
 
 class Cur(var userid: String?, var current: String)
 
 class Fragment2 : Fragment() {
 
     private val top10 : Array<String> = arrayOf("BTC", "LINK", "ETH", "XRP", "SAND", "DOGE", "BORA", "BTT", "ADA", "EOS")
-    private val coin10 : Array<String> = arrayOf("비트코인", "체인링크", "이더리움", "리플", "샌드박스", "도지코인", "보라", "비트토렌트", "에이다", "이오")
+    private val coin10 : Array<String> = arrayOf("비트코인", "체인링크", "이더리움", "리플", "샌드박스", "도지코인", "보라", "비트토렌트", "에이다", "이오스")
 
     private var _binding: FragmentTab2Binding? = null
     private val binding get() = _binding!!
@@ -116,10 +117,14 @@ class Fragment2 : Fragment() {
                 info.clear()
                 getData()
             }
-            val gson = Gson()
-            mSocket.emit("set_current", gson.toJson(Cur(user_id, (acc+sum).toString())))
         }
 
+
+        timer(period = 2000, initialDelay = 3000) {
+            activity?.runOnUiThread {
+                binding.assetTitle.performClick()
+            }
+        }
         return binding.root
     }
 
