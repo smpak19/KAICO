@@ -1,8 +1,20 @@
 # KAICO
-<img width="100%" src="https://user-images.githubusercontent.com/96763888/148904692-af7d43ec-db94-4d57-85d7-4b8b98f3f981.gif" />
-<p align="center"><em>지금, 독수리는 고고하게 시장을 관망하고 있다.</em></p>
-<p align="center"><em>At the moment, the eagle is obediently watching the market.</em></p>
+업비트 API를 이용한 가상화폐 모의 투자 어플리케이션
+<img width="100%" src="https://user-images.githubusercontent.com/49427080/148929638-7c02ee2b-f2fd-4669-8b65-d3f77b76eeea.gif" />
 
-## 업비트 API를 이용한 가상화폐 모의 투자 어플리케이션
+
+# Tab1 - 코인목록
+
+# Tab2 - 투자내역
+
+# Tab3 - 랭킹
+
+# Tab4 - 사용자
+
+# REMARK
+
+# CREDITS
+
+
 ### Node.js, Socket.io, MongoDB
 
