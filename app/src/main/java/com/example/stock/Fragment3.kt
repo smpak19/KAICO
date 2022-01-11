@@ -20,15 +20,17 @@ import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONException
 import java.text.DecimalFormat
+import java.util.*
 import kotlin.concurrent.timer
+import kotlin.concurrent.timerTask
 
 class Fragment3 : Fragment() {
     private var _binding: FragmentTab3Binding? = null
     private val binding get() = _binding!!
-
     lateinit var tab3adapter: Tab3adapter
     private var datas = mutableListOf<RankInfo>()
     private var array = JSONArray()
+    private lateinit var timer: Timer
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +39,7 @@ class Fragment3 : Fragment() {
     ): View? {
 
 
-        timer(period = 2000, initialDelay = 3000) {
+        timer = timer(period = 2000, initialDelay = 3000) {
             activity?.runOnUiThread {
                 val gson = Gson()
                 mSocket.emit("get_current", gson.toJson(currentPrice))
@@ -46,7 +48,6 @@ class Fragment3 : Fragment() {
                 binding.resetrank.performClick()
             }
         }
-
 
         _binding = FragmentTab3Binding.inflate(inflater, container, false)
         tab3adapter = Tab3adapter(requireContext(), datas)
@@ -66,6 +67,11 @@ class Fragment3 : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timer.cancel()
     }
 
     private fun getData() {

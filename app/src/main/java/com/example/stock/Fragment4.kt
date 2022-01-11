@@ -48,6 +48,7 @@ class Fragment4: Fragment() {
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
+            activity?.finish()
 
         }
 
@@ -94,11 +95,12 @@ class Fragment4: Fragment() {
 
         binding.btnLogout.setOnClickListener { //로그아웃
             mSocket.disconnect()
-            Toast.makeText(context, "로그아웃", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
             user_id = null
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
+            activity?.finish()
         }
 
 
