@@ -114,7 +114,6 @@ class Fragment2 : Fragment() {
                         binding.yieldView.setTextColor(Color.BLACK)
                     }
                 }
-                info.clear()
                 getData()
             }
         }
@@ -135,6 +134,7 @@ class Fragment2 : Fragment() {
     }
 
     private fun getData() {
+        val temp = mutableListOf<CoinListInfo>()
         for(i in top10.indices) {
             if(array[i].toDouble() != 0.0) {
                 val coinname = coin10[i]
@@ -151,10 +151,11 @@ class Fragment2 : Fragment() {
                 val gain = DecimalFormat("###,###,###").format(num2.toInt())
                 val yields = DecimalFormat("0.00").format(num2 * 100 / num) + "%"
 
-                info.add(CoinListInfo(coinname, ticker, gain, yields, amount, avg, total, buy))
+                temp.add(CoinListInfo(coinname, ticker, gain, yields, amount, avg, total, buy))
             }
         }
-        tab2adapter.info = info
+        info.clear()
+        info.addAll(temp)
         tab2adapter.notifyDataSetChanged()
     }
 
