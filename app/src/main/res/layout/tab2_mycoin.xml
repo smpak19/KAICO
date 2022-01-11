@@ -38,6 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:background="@drawable/layout_background2"
                     android:text="보유코인이름"
                     android:textColor="@color/white"
@@ -48,7 +49,9 @@
                     android:paddingLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/layout_background3"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:text="보유코인영어이름"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -104,6 +107,10 @@
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="@color/Stock_grey"/>
 
         <LinearLayout
             android:layout_width="match_parent"
