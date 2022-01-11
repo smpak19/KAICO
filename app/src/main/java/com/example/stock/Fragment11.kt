@@ -195,6 +195,7 @@ class Fragment11: Fragment() {
                 binding.search.performClick()
             }
         }
+
         return binding.root
     }
 

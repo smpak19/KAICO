@@ -12,6 +12,7 @@ import com.example.stock.databinding.FragmentTab3Binding
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.stock.GlobalApplication.Companion.currentPrice
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.data.BarData
@@ -22,6 +23,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import io.socket.emitter.Emitter
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
+import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONException
 import java.text.DecimalFormat
@@ -41,13 +43,17 @@ class Fragment3 : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        timer(period = 3000, initialDelay = 3000) {
+
+        timer(period = 2000, initialDelay = 3000) {
             activity?.runOnUiThread {
-                mSocket.emit("get_current")
+                val gson = Gson()
+                mSocket.emit("get_current", gson.toJson(currentPrice))
                 mSocket.on("here", Emitter.Listener {
                     array = JSONArray(it).getJSONArray(0)})
+                binding.resetrank.performClick()
             }
         }
+
 
         _binding = FragmentTab3Binding.inflate(inflater, container, false)
         tab3adapter = Tab3adapter(requireContext(), datas)
@@ -72,9 +78,9 @@ class Fragment3 : Fragment() {
 
     private fun getData() {
         for (i in 0 until array.length()) {
-            val jsonObject = array.getJSONObject(i)
-            val name = jsonObject.getString("name")
-            val current = toDoubleFormat(jsonObject.getDouble("current"))
+            val json = array.getJSONArray(i)
+            val name = json.getString(0)
+            val current = toDoubleFormat(json.getDouble(1))
             datas.add(RankInfo((i+1).toString(), name, current))
         }
         tab3adapter.datas = datas

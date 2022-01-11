@@ -117,11 +117,10 @@ class Fragment2 : Fragment() {
                 info.clear()
                 getData()
             }
-            val gson = Gson()
-            mSocket.emit("set_current", gson.toJson(Cur(user_id, (acc+sum).toString())))
         }
 
-        timer(period = 1000, initialDelay = 3000) {
+
+        timer(period = 2000, initialDelay = 3000) {
             activity?.runOnUiThread {
                 binding.assetTitle.performClick()
             }
