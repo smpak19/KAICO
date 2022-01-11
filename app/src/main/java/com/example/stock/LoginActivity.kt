@@ -70,7 +70,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             else if (token != null) {
-                val intent = Intent(this, MainActivity::class.java)  //로그인 성공 시 다음 화면
 
                 UserApiClient.instance.me { user, error ->
                     if (error != null) {
@@ -97,7 +96,6 @@ class LoginActivity : AppCompatActivity() {
                 //intent.putExtra("name", getKakaoAccount().getProfile().getNickname()) //추가
                 //intent.putExtra("id", result.getKakaoAccount().getEmail()) //추가
                 //intent.putExtra("imgnumber", result.getKakaoAccount().getProfile().getProfileImageUrl()) //추가
-                startActivity(intent)
             }
         }
 
@@ -192,7 +190,7 @@ class LoginActivity : AppCompatActivity() {
         }, 0)
         mSocket.disconnect()
         user_id = null
-        mSocket = IO.socket("http://192.249.18.155:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
+        mSocket = IO.socket("http://192.249.18.140:80") // Login fail, disconnect socket and reinitialize socket 192.249.18.155:80
     }
 
     override fun onBackPressed() {
