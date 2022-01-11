@@ -34,15 +34,18 @@
 
                 <TextView
                     android:id="@+id/mycoin_name_k"
+                    android:paddingLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@drawable/layout_background2"
                     android:text="보유코인이름"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/mycoin_name"
+                    android:paddingLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -78,7 +81,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+
                 android:layout_weight="1"
                 android:orientation="vertical">
 

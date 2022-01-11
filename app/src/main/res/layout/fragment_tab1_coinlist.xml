@@ -37,33 +37,12 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/krwBtn"
-                android:layout_width="85dp"
-                android:layout_height="30dp"
-                android:button="@drawable/coin_list_button_border"
-                android:checked="true"
-                android:gravity="center"
-                android:text="KRW"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-            <RadioButton
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:id="@+id/favoriteBtn"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:checked="false"
-                android:button="@drawable/coin_list_button_border"
-                android:text="관심코인"/>
-
-            <RadioButton
                 android:id="@+id/search"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="10dp"
                 android:backgroundTint="@color/white"
                 android:text="시세 조회"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:checked="false"
                 android:textSize="14sp"
                 android:button="@drawable/coin_list_button_border"
@@ -73,11 +52,12 @@
     <LinearLayout
         android:orientation="horizontal"
         android:padding="10dp"
+        android:background="@color/Stock_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:textSize="12sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:gravity="left|center_vertical|center_horizontal|center"
             android:id="@+id/coinName"
             android:paddingLeft="30dp"
@@ -86,7 +66,7 @@
             android:text="코인명"
             android:layout_weight="3"/>
         <TextView android:textSize="12sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:gravity="center"
             android:id="@+id/coinPrice"
             android:layout_width="0dp"
@@ -95,7 +75,7 @@
             android:layout_weight="2"/>
         <TextView
             android:textSize="12sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:gravity="center"
             android:id="@+id/coinDiff"
             android:layout_width="0dp"
@@ -104,7 +84,7 @@
             android:layout_weight="2"/>
         <TextView
             android:textSize="12sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:gravity="center"
             android:id="@+id/coinTransactionPayment"
             android:layout_width="0dp"

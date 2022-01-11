@@ -3,13 +3,10 @@
     package="com.example.stock">
     <!-- 카카오 로그인을 위한 인터넷 사용 권한 설정-->
     <uses-permission android:name="android.permission.INTERNET" />
-    <queries>
-        <package android:name="com.sec.android.app.shealth" />
-    </queries>
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_bitcoin"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -50,9 +47,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Stock.NoActionBar"/>
     </application>
 
 </manifest>

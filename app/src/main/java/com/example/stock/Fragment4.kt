@@ -42,6 +42,7 @@ class Fragment4: Fragment() {
 
         binding.btnPerson.setOnClickListener {
             mSocket.emit("delete_account", user_id)
+            Toast.makeText(context, "계정이 삭제되었습니다", Toast.LENGTH_SHORT).show()
             mSocket.disconnect()
             user_id = null
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
@@ -93,6 +94,7 @@ class Fragment4: Fragment() {
 
         binding.btnLogout.setOnClickListener { //로그아웃
             mSocket.disconnect()
+            Toast.makeText(context, "로그아웃", Toast.LENGTH_SHORT).show()
             user_id = null
             mSocket = IO.socket("http://192.249.18.155:80") // Go to login screen; disconnect socket and re-initialize global socket
             val intent = Intent(requireContext(), LoginActivity::class.java)
@@ -102,6 +104,7 @@ class Fragment4: Fragment() {
 
         binding.btnReset.setOnClickListener {  //
             mSocket.emit("reset", user_id)
+            Toast.makeText(context, "초기화 되었습니다", Toast.LENGTH_SHORT).show()
         }
 
         return binding.root

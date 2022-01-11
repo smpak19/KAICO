@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
     private var mBackWait: Long = 0
 
     private val tabIcon = listOf( //탭의 아이콘 리스트
-        R.drawable.ic_launcher_background,
-        R.drawable.ic_launcher_background,
-        R.drawable.ic_launcher_background,
-        R.drawable.ic_launcher_background
+        R.drawable.ic_launcher_bitcoin1,
+        R.drawable.ic_launcher_bitcoin2,
+        R.drawable.ic_launcher_bitcoin3,
+        R.drawable.ic_launcher_bitcoin4
     )
 
 
