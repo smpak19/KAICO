@@ -65,7 +65,6 @@ class Fragment11: Fragment() {
         binding.recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         binding.search.setOnClickListener {
-            datas.clear()
             getData()
         }
 
@@ -225,6 +224,7 @@ class Fragment11: Fragment() {
 
     fun convert(data: String): Unit {
         try {
+            val temp = mutableListOf<CoinInfo>()
             val jsonArray = JSONArray(data)
             for(i in 0 until jsonArray.length()) {
                 val jsonObject = jsonArray.getJSONObject(i)
@@ -242,10 +242,11 @@ class Fragment11: Fragment() {
                 }
                 val amount = jsonObject.get("signed_change_price").toString()
                 val total = toDoubleFormat(jsonObject.getDouble("acc_trade_price_24h")/1000000) + "백만"
-                datas.add(CoinInfo(name, ticker, trade, rate, total))
-                currentPrice[i] = datas[i].price
+                temp.add(CoinInfo(name, ticker, trade, rate, total))
+                currentPrice[i] = temp[i].price
             }
-            tab1adapter.datas = datas
+            datas.clear()
+            datas.addAll(temp)
             tab1adapter.notifyDataSetChanged()
         } catch(e: JSONException) {
             e.printStackTrace()

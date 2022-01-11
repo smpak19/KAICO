@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filterable
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 
 class Tab3adapter (private val context: Context, var datas: MutableList<RankInfo>) :
@@ -20,7 +21,19 @@ RecyclerView.Adapter<Tab3adapter.ViewHolder>(){
     override fun getItemCount(): Int = datas.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(datas[position])
+        if(position == 0) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#ffd700"))
+            holder.bind(datas[position])
+        } else if ( position == 1) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#c0c0c0"))
+            holder.bind(datas[position])
+        } else if (position == 2) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#cd7f32"))
+            holder.bind(datas[position])
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"))
+            holder.bind(datas[position])
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

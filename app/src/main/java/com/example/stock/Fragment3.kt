@@ -12,6 +12,7 @@ import com.example.stock.databinding.FragmentTab3Binding
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.stock.GlobalApplication.Companion.currentPrice
 import io.socket.emitter.Emitter
 import com.example.stock.GlobalApplication.Companion.mSocket
 import com.example.stock.GlobalApplication.Companion.user_id
@@ -56,7 +57,6 @@ class Fragment3 : Fragment() {
         //binding.username.text = user_id
 
         binding.resetrank.setOnClickListener {
-            datas.clear()
             getData()
         }
 
@@ -69,13 +69,15 @@ class Fragment3 : Fragment() {
     }
 
     private fun getData() {
+        val temp = mutableListOf<RankInfo>()
         for (i in 0 until array.length()) {
             val json = array.getJSONArray(i)
             val name = json.getString(0)
             val current = toDoubleFormat(json.getDouble(1))
-            datas.add(RankInfo((i+1).toString(), name, current))
+            temp.add(RankInfo((i+1).toString(), name, current))
         }
-        tab3adapter.datas = datas
+        datas.clear()
+        datas.addAll(temp)
         tab3adapter.notifyDataSetChanged()
     }
 
